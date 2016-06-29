@@ -32,15 +32,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()
+				.authorizeRequests()
 				.anyRequest().authenticated()
 				.and()
-			.formLogin()
+				.formLogin()
 				.loginPage("/login")
 				.permitAll()
 				.and()
-			.logout()
-				.permitAll();
+				.logout()
+				.deleteCookies("JSESSIONID")
+				.invalidateHttpSession(true)
+				.permitAll()
+				.and()
+				.rememberMe()
+				.tokenValiditySeconds(1209600);
 	}
 
 	@Autowired
