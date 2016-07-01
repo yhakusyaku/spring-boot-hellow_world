@@ -19,7 +19,7 @@ public class AuthController {
 		//その他の場合はトップページへリダイレクト
 		//ログインページからアクセスしてきた場合の対応
 		else {
-			return "redirect:/";
+			return "redirect:";
 		}
 	}
 
