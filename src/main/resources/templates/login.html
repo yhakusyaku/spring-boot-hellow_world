@@ -3,70 +3,81 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <meta charset="UTF-8" />
-<link href="/webjars/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-<style>
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
-}
-
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="username"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-</style>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<!-- Bootstrap 3.3.6 -->
+<link rel="stylesheet"
+	href="/webjars/adminlte/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet"
+	href="/webjars/adminlte/dist/css/AdminLTE.min.css">
+<!-- iCheck -->
+<link rel="stylesheet"
+	href="/webjars/adminlte/plugins/iCheck/square/blue.css">
 <title>Insert title here</title>
 </head>
-<body>
+<body class="hold-transition login-page">
+	<div class="login-box">
 
-    <div class="container">
+		<div class="login-logo">
+			<a href="../../index2.html"><b>Admin</b>LTE</a>
+		</div>
+		<div class="login-box-body">
+			<form th:action="@{/login}" method="post">
+				<div class="form-group has-feedback">
+					<input type="text" id="username" name="username"
+						class="form-control" placeholder="Email"> <span
+						class="glyphicon glyphicon-envelope form-control-feedback"></span>
+				</div>
+				<div class="form-group has-feedback">
+					<input type="password" id="password" name="password"
+						class="form-control" placeholder="Password"> <span
+						class="glyphicon glyphicon-lock form-control-feedback"></span>
+				</div>
+				<div class="row">
+					<div class="col-xs-8">
+						<div class="checkbox icheck">
+							<label> <input type="checkbox" name="remember-me"
+								value="yes" /> Remember Me
+							</label>
+						</div>
+					</div>
+					<!-- /.col -->
+					<div class="col-xs-4">
+						<button type="submit" class="btn btn-primary btn-block btn-flat">Sign
+							In</button>
+					</div>
+					<!-- /.col -->
+				</div>
+			</form>
+			<div class="alert alert-danger" role="alert" th:if="${param.error}">Invalid
+				username and password.</div>
+			<div class="alert alert-success" role="alert" th:if="${param.logout}">You
+				have been logged out.</div>
+		</div>
+	</div>
+	<!-- /container -->
 
-	<form th:action="@{/login}" method="post"  class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" id="username" name="username" class="form-control" placeholder="UserName"/>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="password" name="password"  class="form-control" placeholder="Password"/>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="remember-me" value="yes"/> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
-		<div class="alert alert-danger" role="alert" th:if="${param.error}">Invalid username and password.</div>
-		<div class="alert alert-success" role="alert" th:if="${param.logout}">You have been logged out.</div>
-    </div> <!-- /container -->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/adminlte/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/webjars/adminlte/plugins/iCheck/icheck.min.js"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
 </body>
 </html>
